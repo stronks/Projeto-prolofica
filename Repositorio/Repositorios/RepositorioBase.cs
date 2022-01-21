@@ -122,7 +122,8 @@ namespace Repositorio.Repositorios
                           from[HorarioAgenda] A
                           inner join Medico B on A.[IdMedico] = B.Id
                           inner join Paciente C on A.[IdPaciente] = C.Id
-                          inner join Consultorio D on A.[IdConsultorio] = D.Id");
+                          inner join Consultorio D on A.[IdConsultorio] = D.Id
+						  order by A.[DataHoraMarcada]");
                 }
             }
             catch (Exception ex)
