@@ -118,7 +118,7 @@ namespace Repositorio.Repositorios
             {
                 using (var connection = CreateConnection())
                 {
-                    return connection.Query<ConsultaAgendadas>(@"select A.id, A.[DataHoraMarcada],b.nome as Medico ,C.nome as Paciente,D.nome as Consultorio, A.DataHoraMarcada ,A.[DataCriacao] ,A.[DataAtualizacao]
+                    return connection.Query<ConsultaAgendadas>(@"select A.id, CONCAT(CONVERT(varchar,A.[DataHoraMarcada],11),' ', CONVERT(varchar,A.[DataHoraMarcada],8))  as DataHoraMarcada   ,b.nome as Medico ,C.nome as Paciente,D.nome as Consultorio, A.DataHoraMarcada ,A.[DataCriacao] ,A.[DataAtualizacao]
                           from[HorarioAgenda] A
                           inner join Medico B on A.[IdMedico] = B.Id
                           inner join Paciente C on A.[IdPaciente] = C.Id

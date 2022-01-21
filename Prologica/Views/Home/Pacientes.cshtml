@@ -4,9 +4,8 @@
 }
 <div id="body">
 
-  <h2>Pacientes</h2>
+  <h3>Pacientes</h3>
 
-  <h3>Lista</h3>
 
   <table id="paciente" data-bind="visible: Pacientes().length > 0">
     <thead>
@@ -23,8 +22,8 @@
 
 
         <td>
-          <button data-bind="click: $root.edit">Edit</button>
-          <button data-bind="click: $root.delete">Delete</button>
+          <button class="btn btn-secondary" data-bind="click: $root.edit">Edit</button>
+          <button class="btn btn-secondary" data-bind="click: $root.delete">Delete</button>
 
         </td>
 
@@ -38,7 +37,7 @@
 
   <div data-bind="if: Paciente">
     <div>
-      <h2>Alterar</h2>
+      <h3>Alterar</h3>
     </div>
     <div>
       <label for="productid" data-bind="visible: false">Id</label>
@@ -52,15 +51,15 @@
 
     <br />
     <div>
-      <button data-bind="click: $root.update">Update</button>
-      <button data-bind="click: $root.cancel">Cancel</button>
+      <button class="btn btn-secondary" data-bind="click: $root.update">Update</button>
+      <button class="btn btn-secondary" data-bind="click: $root.cancel">Cancel</button>
 
     </div>
   </div>
 
   <div data-bind="ifnot: Paciente()">
     <div>
-      <h2>Adicionar</h2>
+      <h3>Adicionar</h3>
     </div>
     <div>
       <label for="nome">Nome</label>
@@ -68,7 +67,7 @@
     </div>
 
     <div>
-      <button data-bind="click: $root.create">Save</button>
+      <button class="btn btn-secondary" data-bind="click: $root.create">Registrar</button>
 
     </div>
   </div>

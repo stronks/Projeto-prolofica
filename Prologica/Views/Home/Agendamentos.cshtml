@@ -5,15 +5,14 @@
 
 <div id="body">
 
-  <h2>Agendamentos</h2>
+  <h3>Agendamentos</h3>
 
-  <h3>Lista</h3>
 
-  <table id="paciente" data-bind="visible: Agendamentos().length > 0">
+  <table id="paciente" data-bind="visible: Agendamentos().length > 0" >
     <thead>
       <tr>
         <th style="display: none;">Id</th>
-        <th style="width: 15vh;">Data e hora</th>
+        <th style="width: 30vh;">Data e hora</th>
         <th style="width: 15vh;">Consultorio</th>
         <th style="width: 15vh;">Medico</th>
         <th style="width: 15vh;">Consultorio</th>
@@ -31,7 +30,7 @@
         <td data-bind="text: Paciente"></td>
 
         <td>
-          <button data-bind="click: $root.delete">Delete</button>
+          <button class="btn btn-secondary" data-bind="click: $root.delete">Delete</button>
 
         </td>
 
@@ -46,31 +45,30 @@
 
   <div data-bind="ifnot: Agendamento()">
     <div>
-      <h2>Agendar</h2>
+      <h3>Agendar</h3>
     </div>
     <Row>
       <div>
         Consultório:
-        <select data-bind="          options: Consultorios,optionsCaption: 'Selecione...',          optionsText: 'name',          value: $root.Consultorio"></select>
+        <select class="form-select" data-bind="          options: Consultorios,optionsCaption: 'Selecione...',          optionsText: 'name',          value: $root.Consultorio"></select>
       </div>
       <div>
         Médico:
-        <select data-bind="          options: Medicos,optionsCaption: 'Selecione...',          optionsText: 'name',          value: $root.Medico"></select>
+        <select class="form-select" data-bind="          options: Medicos,optionsCaption: 'Selecione...',          optionsText: 'name',          value: $root.Medico"></select>
       </div>
       <div>
         Paciente
-        <select data-bind="          options: Pacientes, optionsCaption: 'Selecione...',         optionsText: 'name',          value: $root.Paciente"></select>
+        <select class="form-select" data-bind="          options: Pacientes, optionsCaption: 'Selecione...',         optionsText: 'name',          value: $root.Paciente"></select>
       </div>
 
       <div>
         Horário
-        <input data-bind="value: $root.DataHoraMarcada" type="datetime-local" name="meeting-time"  min="2022-02-01T09:30" />
+        <input class="form-control"  data-bind="value: $root.DataHoraMarcada" type="datetime-local" name="meeting-time" min="2022-02-01T09:30" />
       </div>
-
 
     </Row>
     <div>
-      <button data-bind="click: $root.create">Save</button>
+      <button class="btn btn-secondary" data-bind="click: $root.create">Registrar</button>
 
     </div>
   </div>

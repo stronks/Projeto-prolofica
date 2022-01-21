@@ -8,7 +8,7 @@ namespace Repositorio.Entidades
 {
     public class ConsultaAgendadas : EntidadeBase
     {
-        public DateTime DataHoraMarcada { get; set; }
+        public string DataHoraMarcada { get; set; }
         public string Medico { get; set; }
         public string Consultorio { get; set; }
         public string Paciente { get; set; }

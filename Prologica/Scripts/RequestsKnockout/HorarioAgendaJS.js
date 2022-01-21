@@ -54,7 +54,7 @@ function AgendamentoViewModel() {
             self.Agendamentos(data.map(e => {
                 return {
                     Id: e.id,
-                    DataHoraMarcada: e.dataHoraMarcada,
+                    DataHoraMarcada:  e.dataHoraMarcada,
                     Medico: e.medico,
                     Consultorio: e.consultorio,
                     Paciente: e.paciente
