@@ -1,0 +1,79 @@
+﻿
+@section scripts{
+  @Scripts.Render("~/bundles/horarioagenda")
+}
+
+<div id="body">
+
+  <h2>Agendamentos</h2>
+
+  <h3>Lista</h3>
+
+  <table id="paciente" data-bind="visible: Agendamentos().length > 0">
+    <thead>
+      <tr>
+        <th style="display: none;">Id</th>
+        <th style="width: 15vh;">Data e hora</th>
+        <th style="width: 15vh;">Consultorio</th>
+        <th style="width: 15vh;">Medico</th>
+        <th style="width: 15vh;">Consultorio</th>
+        <th style="width: 15vh;">Paciente</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody data-bind="foreach: Agendamentos">
+      <tr>
+        <td data-bind="visible:false , text: Id "></td>
+        <td data-bind="text: DataHoraMarcada"></td>
+        <td data-bind="text: Consultorio"></td>
+        <td data-bind="text: Medico"></td>
+        <td data-bind="text: Consultorio"></td>
+        <td data-bind="text: Paciente"></td>
+
+        <td>
+          <button data-bind="click: $root.delete">Delete</button>
+
+        </td>
+
+      </tr>
+    </tbody>
+    <tfoot>
+    </tfoot>
+  </table>
+  <br />
+  <div style="border-top: solid 2px #282828; width: 430px; height: 10px"> </div>
+
+
+  <div data-bind="ifnot: Agendamento()">
+    <div>
+      <h2>Agendar</h2>
+    </div>
+    <Row>
+      <div>
+        Consultório:
+        <select data-bind="          options: Consultorios,optionsCaption: 'Selecione...',          optionsText: 'name',          value: $root.Consultorio"></select>
+      </div>
+      <div>
+        Médico:
+        <select data-bind="          options: Medicos,optionsCaption: 'Selecione...',          optionsText: 'name',          value: $root.Medico"></select>
+      </div>
+      <div>
+        Paciente
+        <select data-bind="          options: Pacientes, optionsCaption: 'Selecione...',         optionsText: 'name',          value: $root.Paciente"></select>
+      </div>
+
+      <div>
+        Horário
+        <input data-bind="value: $root.DataHoraMarcada" type="datetime-local" name="meeting-time"  min="2022-02-01T09:30" />
+      </div>
+
+
+    </Row>
+    <div>
+      <button data-bind="click: $root.create">Save</button>
+
+    </div>
+  </div>
+
+
+</div>

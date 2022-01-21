@@ -1,0 +1,78 @@
+﻿
+@section scripts{
+  @Scripts.Render("~/bundles/consultorios")
+}
+
+<div id="body">
+
+  <h2>Consultorios</h2>
+
+  <h3>Lista</h3>
+
+  <table id="consultorio" data-bind="visible: Consultorios().length > 0">
+    <thead>
+      <tr>
+        <th style="display: none;">Id</th>
+        <th style="width: 35vh;">Nome</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody data-bind="foreach: Consultorios">
+      <tr>
+        <td data-bind="visible:false , text: Id "></td>
+        <td data-bind="text: Nome"></td>
+
+
+        <td>
+          <button data-bind="click: $root.edit">Edit</button>
+          <button data-bind="click: $root.delete">Delete</button>
+
+        </td>
+
+      </tr>
+    </tbody>
+    <tfoot>
+    </tfoot>
+  </table>
+  <br />
+  <div style="border-top: solid 2px #282828; width: 430px; height: 10px"> </div>
+
+  <div data-bind="if: Consultorio">
+    <div>
+      <h2>Alterar</h2>
+    </div>
+    <div>
+      <label for="productid" data-bind="visible: false">Id</label>
+      <label data-bind="text: Consultorio().Id, visible: false"></label>
+
+    </div>
+    <div>
+      <label for="Nome">Name</label>
+      <input data-bind="value: Consultorio().Nome" type="text" title="Nome" />
+    </div>
+
+    <br />
+    <div>
+      <button data-bind="click: $root.update">Update</button>
+      <button data-bind="click: $root.cancel">Cancel</button>
+
+    </div>
+  </div>
+
+  <div data-bind="ifnot: Consultorio()">
+    <div>
+      <h2>Adicionar</h2>
+    </div>
+    <div>
+      <label for="nome">Nome</label>
+      <input data-bind="value: $root.Nome" type="text" title="Nome" />
+    </div>
+
+    <div>
+      <button data-bind="click: $root.create">Save</button>
+
+    </div>
+  </div>
+
+
+</div>
