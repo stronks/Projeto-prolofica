@@ -54,7 +54,7 @@ function ConsultorioViewModel() {
                 }
             }).fail(
                 function (xhr, textStatus, err) {
-                    alert(err);
+                    alert(xhr.responseJSON.message);
                 });
         }
         else {
@@ -83,7 +83,7 @@ function ConsultorioViewModel() {
                 }
             }).fail(
                 function (xhr, textStatus, err) {
-                    self.status(err);
+                    alert(xhr.responseJSON.message);
                 });
         }
     }

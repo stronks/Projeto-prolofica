@@ -140,7 +140,7 @@ function AgendamentoViewModel() {
                 }
             }).fail(
                 function (xhr, textStatus, err) {
-                    alert(err);
+                    alert(xhr.responseJSON.message);
                 });
         }
         else {
@@ -209,7 +209,7 @@ function AgendamentoViewModel() {
         })
             .fail(
                 function (xhr, textStatus, err) {
-                    alert(err);
+                    alert(xhr.responseJSON.message);
                 });
     }
 

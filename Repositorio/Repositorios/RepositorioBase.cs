@@ -19,11 +19,18 @@ namespace Repositorio.Repositorios
 
     public class RepositorioBase<TEntidade> : IRepositorioBase<TEntidade> where TEntidade : EntidadeBase
     {
-        private readonly string connectionString = "Data Source = localhost; Initial Catalog = teste; Integrated Security = True";
+        private readonly string _connectionString;
+
+
+        public  RepositorioBase(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
 
         private IDbConnection CreateConnection()
         {
-            var connection = new SqlConnection(connectionString);
+            var connection = new SqlConnection(_connectionString);
             return connection;
         }
 

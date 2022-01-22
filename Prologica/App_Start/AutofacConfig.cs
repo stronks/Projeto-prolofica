@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using AEC.Repositorio;
+using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Repositorio.Entidades;
@@ -10,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Http;
 using System.Web.Mvc;
 
@@ -18,7 +20,7 @@ namespace Prologica.App_Start
     public class AutofacConfig
     {
         public static System.ComponentModel.IContainer Container;
-
+        private static string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
         public static void Initialize(HttpConfiguration config)
         {
             Initialize(config, RegisterServices(new ContainerBuilder()));
@@ -37,8 +39,10 @@ namespace Prologica.App_Start
         private static IContainer RegisterServices(ContainerBuilder builder)
         {
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly‌​());
-            RegistraClassesRepositoriosInjecaoDependencia(builder);
-            RegistraClassesNegocioInjecaoDependencia(builder);
+
+             RegistraClassesConnectionStringDependencia(builder);
+             RegistraClassesRepositoriosInjecaoDependencia(builder, connectionString);
+             RegistraClassesNegocioInjecaoDependencia(builder);
 
 
             var container = builder.Build();
@@ -46,26 +50,30 @@ namespace Prologica.App_Start
         }
 
 
-        private static void RegistraClassesRepositoriosInjecaoDependencia(ContainerBuilder builder)
+        private static void RegistraClassesRepositoriosInjecaoDependencia(ContainerBuilder builder, string connectionString)
         {
 
             builder.RegisterType<RepositorioBase<Medico>>()
                 .As<IRepositorioBase<Medico>>()
+                .WithParameter("connectionString", connectionString)            
                 .InstancePerLifetimeScope();
 
 
             builder.RegisterType<RepositorioBase<Paciente>>()
                 .As<IRepositorioBase<Paciente>>()
+                .WithParameter("connectionString", connectionString)
                 .InstancePerLifetimeScope();
 
 
             builder.RegisterType<RepositorioBase<Consultorio>>()
                 .As<IRepositorioBase<Consultorio>>()
+                .WithParameter("connectionString", connectionString)
                 .InstancePerLifetimeScope();
 
 
             builder.RegisterType<RepositorioBase<HorarioAgenda>>()
                 .As<IRepositorioBase<HorarioAgenda>>()
+                .WithParameter("connectionString", connectionString)
                 .InstancePerLifetimeScope();
         }
 
@@ -88,5 +96,15 @@ namespace Prologica.App_Start
                 .InstancePerLifetimeScope();
 
         }
+        private static void RegistraClassesConnectionStringDependencia(ContainerBuilder builder)
+        {
+            string ttt = "teste";
+            builder.RegisterType<ConexaoBancoDadosRepositorio>()
+               
+                .As<IConexaoBancoDadosRepositorio>()
+                .InstancePerLifetimeScope();
+
+        }
+
     }
 }

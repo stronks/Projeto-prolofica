@@ -54,7 +54,7 @@ function PacienteViewModel() {
                 }
             }).fail(
                 function (xhr, textStatus, err) {
-                    alert(err);
+                    alert(xhr.responseJSON.message);
                 });
         }
         else {
@@ -118,7 +118,7 @@ function PacienteViewModel() {
         })
             .fail(
                 function (xhr, textStatus, err) {
-                    alert(err);
+                    alert(xhr.responseJSON.message);
                 });
     }
 
